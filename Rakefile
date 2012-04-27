@@ -1,3 +1,36 @@
+redmine = File.join(File.dirname(__FILE__), 'redmine')
+
+desc 'Run tests'
+task :test do
+  Dir.chdir(redmine) do
+    exit false unless system %q{rake test:plugins PLUGIN=redmine_allocation RAILS_ENV=test}
+  end
+end
+
+namespace :test do
+  desc 'Run functional tests'
+  task :functionals do
+    Dir.chdir(redmine) do
+      exit false unless system %q{rake test:plugins:functionals PLUGIN=redmine_allocation RAILS_ENV=test}
+    end
+  end
+
+  desc 'Run unit tests'
+  task :units do
+    Dir.chdir(redmine) do
+      exit false unless system %q{rake test:plugins:units PLUGIN=redmine_allocation RAILS_ENV=test}
+    end
+  end
+
+  desc 'Drop and recreate the test database'
+  task :prepare do
+    Dir.chdir(redmine) do
+      exit false unless system %q{rake db:drop db:create db:migrate db:migrate_plugins RAILS_ENV=test}
+      exit false unless system %q{rake redmine:load_default_data REDMINE_LANG=en RAILS_ENV=test}
+    end
+  end
+end
+
 desc 'Add a tag in git'
 task :tag, :version do |t, args|
   tagname = args.version

@@ -1,5 +1,9 @@
 # Spanish strings go here
 es:
+  field_allocation: Dedicación
+  field_from_date: Inicio
+  field_to_date: Fin
+
   allocation:
     plugin_name: Dedicación de usuarios
     plugin_description: Permite seguir y visualizar la carga de trabajo de los usuarios.

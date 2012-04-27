@@ -1,5 +1,9 @@
 # English strings go here
 en:
+  field_allocation: Allocation
+  field_from_date: Start date
+  field_to_date: Finish date
+
   allocation:
     plugin_name: User Allocation
     plugin_description: Helps to track and see user allocation.
