@@ -1,6 +1,7 @@
 require 'redmine'
 
 require_dependency 'allocation/hooks'
+require_dependency 'allocation/patches/members_controller_patch.rb'
 
 Redmine::Plugin.register :redmine_traceability do
   Rails.configuration.after_initialize do
