@@ -7,3 +7,5 @@ es:
   allocation:
     plugin_name: Dedicación de usuarios
     plugin_description: Permite seguir y visualizar la carga de trabajo de los usuarios.
+
+    label_allocation: Dedicaciones

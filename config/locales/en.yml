@@ -7,3 +7,5 @@ en:
   allocation:
     plugin_name: User Allocation
     plugin_description: Helps to track and see user allocation.
+
+    label_allocation: Allocation
