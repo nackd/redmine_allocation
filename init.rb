@@ -3,7 +3,7 @@ require 'redmine'
 require_dependency 'allocation/hooks'
 require_dependency 'allocation/patches/members_controller_patch.rb'
 
-Redmine::Plugin.register :redmine_traceability do
+Redmine::Plugin.register :redmine_allocation do
   Rails.configuration.after_initialize do
     locale = if Setting.table_exists?
                Setting.default_language
@@ -18,6 +18,8 @@ Redmine::Plugin.register :redmine_traceability do
       version '0.1'
     end
   end
+
+  settings :default => {}, :partial => 'settings/redmine_allocation'
 
   project_module :allocation do
   end
