@@ -9,3 +9,5 @@ en:
     plugin_description: Helps to track and see user allocation.
 
     label_allocation: Allocation
+    label_by_project: By project
+    label_person: Person

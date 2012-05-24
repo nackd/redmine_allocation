@@ -1,0 +1,33 @@
+<h2><%=l :"allocation.label_by_project" %></h2>
+
+<% @projects.each do |project| %>
+
+  <h3><%=h project %></h3>
+
+  <table class="list">
+    <thead>
+      <tr>
+        <th><%=l :"allocation.label_person" %></th>
+        <th><%=l :field_allocation %></th>
+        <th><%=l :field_from_date %></th>
+        <th><%=l :field_to_date %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% project.members.each do |member| %>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td><%= member.user %></td>
+          <td><%= member.allocation ? "#{member.allocation} %" : "--" %></td>
+          <td><%= format_date(member.from_date) %></td>
+          <td><%= format_date(member.to_date) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'hooks/allocation/view_projects_show_sidebar_bottom' %>
+<% end %>
+
+<% html_title "#{@project}: #{l :'allocation.by_project'}" %>
