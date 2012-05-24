@@ -20,7 +20,4 @@ Redmine::Plugin.register :redmine_allocation do
   end
 
   settings :default => {}, :partial => 'settings/redmine_allocation'
-
-  project_module :allocation do
-  end
 end
