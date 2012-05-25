@@ -8,6 +8,8 @@ en:
     plugin_name: User Allocation
     plugin_description: Helps to track and see user allocation.
 
+    label_all_allocation: HHRR
     label_allocation: Allocation
     label_by_project: By project
+    label_by_user: By user
     label_person: Person
