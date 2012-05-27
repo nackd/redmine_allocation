@@ -14,14 +14,20 @@
       </tr>
     </thead>
     <tbody>
-      <% project.members.each do |member| %>
-        <tr class="<%= cycle("odd", "even") %>">
-          <td><%= member.user %></td>
-          <td><%= member.allocation ? "#{member.allocation} %" : "--" %></td>
-          <td><%= format_date(member.from_date) %></td>
-          <td><%= format_date(member.to_date) %></td>
+      <%- if project.members.empty? -%>
+        <tr>
+          <td colspan="4"><%=l :label_no_data %></td>
         </tr>
-      <% end %>
+      <%- else -%>
+        <%- project.members.each do |member| -%>
+          <tr class="<%= cycle("odd", "even") %>">
+            <td><%= member.user %></td>
+            <td><%= member.allocation ? "#{member.allocation} %" : "--" %></td>
+            <td><%= format_date(member.from_date) %></td>
+            <td><%= format_date(member.to_date) %></td>
+          </tr>
+        <%- end -%>
+      <%- end -%>
     </tbody>
   </table>
 <% end %>

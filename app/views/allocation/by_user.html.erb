@@ -14,14 +14,20 @@
       </tr>
     </thead>
     <tbody>
-      <% allocation.each do |user, user_allocation| %>
-        <tr class="<%= cycle("odd", "even") %>">
-          <td><%=h user %></td>
-          <%- user_allocation.each do |month_allocation| %>
-            <td style="text-align:right"><%= "#{month_allocation} %" %></td>
-          <%- end -%>
+      <%- if allocation.empty? -%>
+        <tr>
+          <td colspan="13"><%=l :label_no_data %></td>
         </tr>
-      <% end %>
+      <%- else -%>
+        <%- allocation.each do |user, user_allocation| -%>
+          <tr class="<%= cycle("odd", "even") %>">
+            <td><%=h user %></td>
+            <%- user_allocation.each do |month_allocation| %>
+              <td style="text-align:right"><%= "#{month_allocation} %" %></td>
+            <%- end -%>
+          </tr>
+        <%- end -%>
+      <%- end -%>
     </tbody>
   </table>
 <% end %>
