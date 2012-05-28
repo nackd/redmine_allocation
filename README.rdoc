@@ -42,5 +42,5 @@ version. See LICENSE.txt for details.
 == Contributing
 
 Just fork the repository[https://github.com/Emergya/redmine_allocation] and
-do a pull request. If you are going to do major that you would like to see
-accepted upstream you can contact me at jmprieto@emergya.com before.
+do a pull request. If you are going to do major change that you would like to
+see accepted upstream you can contact me at jmprieto@emergya.com before.
