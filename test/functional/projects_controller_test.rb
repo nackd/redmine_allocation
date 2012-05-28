@@ -26,6 +26,7 @@ class ProjectsControllerTest < AllocationControllerTestCase
     get :show, :id => "allocation"
     assert_response :success
 
-    assert_select "div#sidebar a", :count => 1, :text => I18n.t(:"allocation.label_allocation")
+    assert_select "div#sidebar a", :count => 1, :text => I18n.t(:"allocation.label_by_project")
+    assert_select "div#sidebar a", :count => 1, :text => I18n.t(:"allocation.label_by_user")
   end
 end
