@@ -15,7 +15,7 @@ def create_test_data
                   :identifier => "allocation",
                   :name       => "allocation test",
                   :is_public  => false,
-                  :enabled_module_names => ["issue_tracking", "allocation"])
+                  :enabled_module_names => ["issue_tracking"])
   p.save!
   # Member
   m = Member.new(:user => User.find_by_login("admin"),

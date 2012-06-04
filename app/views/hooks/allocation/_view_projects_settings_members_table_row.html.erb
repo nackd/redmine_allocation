@@ -1,4 +1,3 @@
-<% if @project.module_enabled? 'allocation' %>
 <%
   url = if Redmine::VERSION::MAJOR > 1 or (Redmine::VERSION::MAJOR == 1 and Redmine::VERSION::MINOR >= 4)
           membership_path(member)
@@ -6,42 +5,41 @@
           {:controller => 'members', :action => 'edit', :id => member}
         end
 %>
-  <td>
-    <% remote_form_for(:allocation,
-                       member,
-                       :url => url,
-                       :method => :put) do |f| %>
-      <%= f.select :allocation, ((0..10).to_a.collect {|r| ["#{r*10} %", r*10] }), {}, :id => "member-#{member.id}-allocation" %>
-      <%= observe_field("member-#{member.id}-allocation",
-                        :url => url,
-                        :method => :put,
-                        :with => "allocation[allocation]") %>
-    <% end %>
-  </td>
-  <td>
-    <% remote_form_for(:allocation,
-                       member,
-                       :url => url,
-                       :method => :put) do |f| %>
-      <%= f.text_field :from_date, :size => 10, :id => "member-#{member.id}-from_date" %><%= calendar_for("member-#{member.id}-from_date") %>
-      <%= observe_field("member-#{member.id}-from_date",
-                        :frequency => 0.5,
-                        :url => url,
-                        :method => :put,
-                        :with => "allocation[from_date]") %>
-    <% end %>
-  </td>
-  <td>
-    <% remote_form_for(:allocation,
-                       member,
-                       :url => url,
-                       :method => :put) do |f| %>
-      <%= f.text_field :to_date, :size => 10, :id => "member-#{member.id}-to_date" %><%= calendar_for("member-#{member.id}-to_date") %>
-      <%= observe_field("member-#{member.id}-to_date",
-                        :frequency => 0.5,
-                        :url => url,
-                        :method => :put,
-                        :with => "allocation[to_date]") %>
-    <% end %>
-  </td>
-<% end %>
+<td>
+  <% remote_form_for(:allocation,
+                     member,
+                     :url => url,
+                     :method => :put) do |f| %>
+    <%= f.select :allocation, ((0..10).to_a.collect {|r| ["#{r*10} %", r*10] }), {}, :id => "member-#{member.id}-allocation" %>
+    <%= observe_field("member-#{member.id}-allocation",
+                      :url => url,
+                      :method => :put,
+                      :with => "allocation[allocation]") %>
+  <% end %>
+</td>
+<td>
+  <% remote_form_for(:allocation,
+                     member,
+                     :url => url,
+                     :method => :put) do |f| %>
+    <%= f.text_field :from_date, :size => 10, :id => "member-#{member.id}-from_date" %><%= calendar_for("member-#{member.id}-from_date") %>
+    <%= observe_field("member-#{member.id}-from_date",
+                      :frequency => 0.5,
+                      :url => url,
+                      :method => :put,
+                      :with => "allocation[from_date]") %>
+  <% end %>
+</td>
+<td>
+  <% remote_form_for(:allocation,
+                     member,
+                     :url => url,
+                     :method => :put) do |f| %>
+    <%= f.text_field :to_date, :size => 10, :id => "member-#{member.id}-to_date" %><%= calendar_for("member-#{member.id}-to_date") %>
+    <%= observe_field("member-#{member.id}-to_date",
+                      :frequency => 0.5,
+                      :url => url,
+                      :method => :put,
+                      :with => "allocation[to_date]") %>
+  <% end %>
+</td>
