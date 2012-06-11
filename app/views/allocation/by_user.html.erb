@@ -23,7 +23,7 @@
           <tr class="<%= cycle("odd", "even") %>">
             <td><%=h user %></td>
             <%- user_allocation.each do |month_allocation| %>
-              <td style="text-align:right"><%= "#{month_allocation} %" %></td>
+              <td style="text-align:right"><%= percent month_allocation %></td>
             <%- end -%>
           </tr>
         <%- end -%>
