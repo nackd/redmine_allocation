@@ -20,4 +20,5 @@ Redmine::Plugin.register :redmine_allocation do
   end
 
   settings :default => {}, :partial => 'settings/redmine_allocation'
+  Redmine::AccessControl.permission(:manage_members).instance_variable_get(:@actions) << "allocation/by_user" << "allocation/by_project"
 end

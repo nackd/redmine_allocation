@@ -32,6 +32,11 @@ to projects.
 
   That is interpreted as since ever or forever.
 
+* Who is allowed to see the allocation summaries?
+
+  Every member of the project with the permission to manage members (and
+  administrators).
+
 == License
 
 This program is free software; you can redistribute it and/or modify it under
