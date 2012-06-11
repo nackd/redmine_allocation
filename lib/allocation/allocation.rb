@@ -17,14 +17,13 @@ module Allocation
       users.reduce({}) do |hash, user|
         hash[user] = months.reduce([]) do |inner, month|
           inner << user_allocation(user, month[:start_date], month[:end_date])
-          inner
         end
         hash
       end
     end
 
     def user_allocation(user, from, to)
-      user.members.reduce(0) { |sum, member| sum + member_allocation(member, from, to); sum }
+      user.members.reduce(0) { |sum, member| sum + member_allocation(member, from, to) }
     end
 
     def member_allocation(member, from, to)
