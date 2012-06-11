@@ -11,8 +11,7 @@ require 'mocha'
 
 def create_test_data
   # Project
-  p = Project.new(:id         => 1,
-                  :identifier => "allocation",
+  p = Project.new(:identifier => "allocation",
                   :name       => "allocation test",
                   :is_public  => false,
                   :enabled_module_names => ["issue_tracking"])
