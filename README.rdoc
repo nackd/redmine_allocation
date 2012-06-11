@@ -37,6 +37,12 @@ to projects.
   Every member of the project with the permission to manage members (and
   administrators).
 
+* What are the custom fields in the settings page used for?
+
+  They are optional. They specify a group or team. They're only used to show
+  separately the _inside_ and _outside_ members in the allocation by user
+  summary.
+
 == License
 
 This program is free software; you can redistribute it and/or modify it under
