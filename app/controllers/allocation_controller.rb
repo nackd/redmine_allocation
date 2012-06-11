@@ -4,10 +4,10 @@ class AllocationController < ApplicationController
   include Allocation::Allocation
 
   def by_project
-    @projects = Project.find :all,
-                             :conditions => @project.project_condition(true),
-                             :include => [:members => :user],
-                             :order => "#{Project.table_name}.lft"
+    @projects = Project.visible.find :all,
+                                     :conditions => @project.project_condition(true),
+                                     :include => [:members => :user],
+                                     :order => "#{Project.table_name}.lft"
   end
 
   def by_user
