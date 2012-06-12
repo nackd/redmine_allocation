@@ -4,27 +4,27 @@ class AllocationController < ApplicationController
   include Allocation::Allocation
 
   def by_project
-    @projects = Project.visible.find :all,
-                                     :conditions => @project.project_condition(true),
-                                     :include => [:members => :user],
-                                     :order => "#{Project.table_name}.lft"
+    @projects = Project.visible.active.find :all,
+                                            :conditions => @project.project_condition(true),
+                                            :include => [:members => :user],
+                                            :order => "#{Project.table_name}.lft"
   end
 
   def by_user
     @months = months
     user_group_field = Setting.plugin_redmine_allocation['users_custom_field']
     project_group_field = Setting.plugin_redmine_allocation['projects_custom_field']
-    subproject_users = User.find :all,
-                                 :select => "DISTINCT #{User.table_name}.*",
-                                 :joins => { :members => :project },
-                                 :include => :members,
-                                 :conditions => @project.project_condition(true)
+    subproject_users = User.active.find :all,
+                                        :select => "DISTINCT #{User.table_name}.*",
+                                        :joins => { :members => :project },
+                                        :include => :members,
+                                        :conditions => @project.project_condition(true)
     if user_group_field and project_group_field
       group = @project.custom_value_for(project_group_field)
-      group_users = User.find :all,
-                              :joins => { :custom_values => :custom_field },
-                              :include => :members,
-                              :conditions => "#{CustomField.table_name}.id = #{user_group_field} AND #{CustomValue.table_name}.value = #{group}"
+      group_users = User.active.find :all,
+                                     :joins => { :custom_values => :custom_field },
+                                     :include => :members,
+                                     :conditions => "#{CustomField.table_name}.id = #{user_group_field} AND #{CustomValue.table_name}.value = #{group}"
       outside_users = subproject_users - group_users
       group_allocation = allocation_by_months(group_users, @months)
       outside_allocation = allocation_by_months(outside_users, @months)

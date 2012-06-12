@@ -23,7 +23,7 @@ module Allocation
     end
 
     def user_allocation(user, from, to)
-      user.members.reduce(0) { |sum, member| sum + member_allocation(member, from, to) }
+      user.memberships.reduce(0) { |sum, member| sum + member_allocation(member, from, to) }
     end
 
     def member_allocation(member, from, to)
