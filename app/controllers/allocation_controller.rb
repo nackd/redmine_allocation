@@ -21,10 +21,12 @@ class AllocationController < ApplicationController
                                         :conditions => @project.project_condition(true)
     if user_group_field and project_group_field
       group = @project.custom_value_for(project_group_field)
+      quoted_group = CustomValue.connection.quote group
       group_users = User.active.find :all,
                                      :joins => { :custom_values => :custom_field },
                                      :include => :members,
-                                     :conditions => "#{CustomField.table_name}.id = #{user_group_field} AND #{CustomValue.table_name}.value = #{group}"
+                                     :conditions => "#{CustomField.table_name}.id = #{user_group_field}"
+                                                    " AND #{CustomValue.table_name}.value = #{quoted_group}"
       outside_users = subproject_users - group_users
       group_allocation = allocation_by_months(group_users, @months)
       outside_allocation = allocation_by_months(outside_users, @months)
