@@ -15,7 +15,7 @@ Redmine::Plugin.register :redmine_allocation do
       name I18n.t :'allocation.plugin_name'
       description I18n.t :'allocation.plugin_description'
       author 'Emergya'
-      version '1.1.1'
+      version '1.1.2'
     end
   end
 
