@@ -2,6 +2,7 @@ class AllocationController < ApplicationController
   before_filter :find_project
   menu_item :overview
   include Allocation::Allocation
+  unloadable
 
   def by_project
     @projects = Project.visible.active.find :all,

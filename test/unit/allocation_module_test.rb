@@ -1,4 +1,5 @@
-require File.dirname(__FILE__) + '/../test_helper'
+puts File.expand_path('../test_helper', File.dirname(__FILE__))
+require File.expand_path('../test_helper', File.dirname(__FILE__))
 
 class AllocationClass
   include Allocation::Allocation

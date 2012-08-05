@@ -1,4 +1,3 @@
-require 'dispatcher'
 require_dependency 'members_controller'
 
 module Allocation
@@ -12,6 +11,7 @@ module Allocation
           unloadable  # Send unloadable so it will be reloaded in development
 
           append_before_filter :update_allocation, :only => [:update, :edit]
+          helper :allocation
         end
       end
 
@@ -29,6 +29,12 @@ module Allocation
   end
 end
 
-Dispatcher.to_prepare do
-  MembersController.send(:include, Allocation::Patches::MembersControllerPatch)
+if Rails::VERSION::MAJOR > 1
+  ActionDispatch::Reloader.to_prepare do
+    MembersController.send(:include, Allocation::Patches::MembersControllerPatch)
+  end
+else
+  Dispatcher.to_prepare do
+    MembersController.send(:include, Allocation::Patches::MembersControllerPatch)
+  end
 end

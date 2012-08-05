@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + "/../test_helper"
+require File.expand_path "../test_helper", File.dirname(__FILE__)
 
 class ProjectsControllerTest < AllocationControllerTestCase
   test "project members page shows allocation fields" do

@@ -1,47 +1,29 @@
-<%
-  if Redmine::VERSION::MAJOR > 1 or (Redmine::VERSION::MAJOR == 1 and Redmine::VERSION::MINOR >= 4)
-    url = membership_path(member)
-    method = :put
-  else
-    url = {:controller => 'members', :action => 'edit', :id => member}
-    method = :post
-  end
-%>
 <td>
-  <% remote_form_for(:allocation,
-                     member,
-                     :url => url,
-                     :method => method) do |f| %>
+  <%= allocation_form(member) do |f| %>
     <%= f.select :allocation, ((0..10).to_a.collect {|r| ["#{r*10} %", r*10] }), {}, :id => "member-#{member.id}-allocation" %>
     <%= observe_field("member-#{member.id}-allocation",
-                      :url => url,
-                      :method => method,
+                      :url => f.url,
+                      :method => f.method,
                       :with => "allocation[allocation]") %>
   <% end %>
 </td>
 <td>
-  <% remote_form_for(:allocation,
-                     member,
-                     :url => url,
-                     :method => method) do |f| %>
+  <%= allocation_form(member) do |f| %>
     <%= f.text_field :from_date, :size => 10, :id => "member-#{member.id}-from_date" %><%= calendar_for("member-#{member.id}-from_date") %>
     <%= observe_field("member-#{member.id}-from_date",
                       :frequency => 0.5,
-                      :url => url,
-                      :method => method,
+                      :url => f.url,
+                      :method => f.method,
                       :with => "allocation[from_date]") %>
   <% end %>
 </td>
 <td>
-  <% remote_form_for(:allocation,
-                     member,
-                     :url => url,
-                     :method => method) do |f| %>
+  <%= allocation_form(member) do |f| %>
     <%= f.text_field :to_date, :size => 10, :id => "member-#{member.id}-to_date" %><%= calendar_for("member-#{member.id}-to_date") %>
     <%= observe_field("member-#{member.id}-to_date",
                       :frequency => 0.5,
-                      :url => url,
-                      :method => method,
+                      :url => f.url,
+                      :method => f.method,
                       :with => "allocation[to_date]") %>
   <% end %>
 </td>

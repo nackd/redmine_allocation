@@ -1,10 +1,14 @@
 # Load the normal Rails helper
-require File.expand_path('../../../../test/test_helper', File.dirname(__FILE__))
+if File.exists? '../../../../test/test_helper.rb'
+  require File.expand_path('../../../../test/test_helper', File.dirname(__FILE__))
+else
+  require File.expand_path('../../../test/test_helper', File.dirname(__FILE__))
+end
 
 require File.dirname(__FILE__) + "/functional/allocation_controller_test_case.rb"
 
 # Ensure that we are using the temporary fixture path
-Engines::Testing.set_fixture_path
+#Engines::Testing.set_fixture_path
 
 gem 'mocha'
 require 'mocha'

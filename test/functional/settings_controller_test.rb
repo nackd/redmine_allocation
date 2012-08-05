@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + "/../test_helper"
+require File.expand_path "../test_helper", File.dirname(__FILE__)
 
 class SettingsControllerTest < AllocationControllerTestCase
   test "settings page shows fields to configure user and projects custom fields" do
