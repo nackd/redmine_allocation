@@ -46,4 +46,22 @@ class AllocationModuleTest < ActiveSupport::TestCase
                                                                     :to_date => Date.new(2012, 3, 19)),
                                                          Date.new(2012, 3, 1), Date.new(2012, 3, 31))
   end
+
+  test "allocation is zero when interval and member dates do not overlap" do
+    allocation = AllocationClass.new
+    assert_equal 0, allocation.member_allocation(Member.new(:allocation => 100,
+                                                            :from_date => Date.new(2012, 3, 1),
+                                                            :to_date => Date.new(2012, 3, 15)),
+                                                 Date.new(2012, 4, 1), Date.new(2012, 4, 30))
+    assert_equal 0, allocation.member_allocation(Member.new(:allocation => 100,
+                                                            :to_date => Date.new(2012, 3, 15)),
+                                                 Date.new(2012, 4, 1), Date.new(2012, 4, 30))
+    assert_equal 0, allocation.member_allocation(Member.new(:allocation => 100,
+                                                            :from_date => Date.new(2012, 4, 15),
+                                                            :to_date => Date.new(2012, 4, 30)),
+                                                 Date.new(2012, 3, 1), Date.new(2012, 3, 31))
+    assert_equal 0, allocation.member_allocation(Member.new(:allocation => 100,
+                                                            :from_date => Date.new(2012, 4, 15)),
+                                                 Date.new(2012, 3, 1), Date.new(2012, 3, 31))
+  end
 end
